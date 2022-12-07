@@ -24,4 +24,7 @@ protected:
   Gtk::Button exitButton;
   Gtk::Grid m_grid;
   Gtk::Frame controls_Frame;
+  Gtk::Frame view_Frame;
+  Gtk::Grid* Controls_grid;
+  Gtk::Grid* Main_grid;
 };

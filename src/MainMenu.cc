@@ -8,10 +8,8 @@ MainMenu::MainMenu(): m_VBox(Gtk::Orientation::VERTICAL) // main mewnu construct
 {
   g_object_set(gtk_settings_get_default(),"gtk-application-prefer-dark-theme", TRUE,NULL); //set dark mode
 
-  auto css = Gtk::CssProvider::create();//create new css object
-  css->load_from_path(ManinMenuCssFile); //import css
 
-  get_style_context()->add_provider_for_display(Gdk::Display::get_default(), css, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION); //something
+
 
   set_size_request(1000,800); //set default size of window  
   set_title("Main Menu"); // title
@@ -20,37 +18,40 @@ MainMenu::MainMenu(): m_VBox(Gtk::Orientation::VERTICAL) // main mewnu construct
   m_VBox.append(m_HBox);
 
 
-  Gtk::Grid* grid = Gtk::manage(new Gtk::Grid());
+  Controls_grid = Gtk::manage(new Gtk::Grid());
 
   StaffButton.set_label("Staff");
   StaffButton.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::loginPrompt) ); //set callback function
-  grid->attach(StaffButton, 1,1,2,1);
+  Controls_grid->attach(StaffButton, 1,1,2,1);
 
   StockButton.set_label("Stock");
   StockButton.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::loginPrompt) ); //set callback function
-  grid->attach(StockButton,1,3,2,1);
+  Controls_grid->attach(StockButton,1,3,2,1);
 
   ThursdayBookingButton.set_label("Thursday Bookings");
   ThursdayBookingButton.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::loginPrompt) ); //set callback function
-  grid->attach(ThursdayBookingButton,1,5,2,1);
+  Controls_grid->attach(ThursdayBookingButton,1,5,2,1);
 
   SundayBookingButton.set_label("Sunday Bookings");
   SundayBookingButton.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::loginPrompt) ); //set callback function
-  grid->attach(SundayBookingButton,1,7,2,1);
+  Controls_grid->attach(SundayBookingButton,1,7,2,1);
 
   exitButton.set_label("Exit");
   exitButton.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::loginPrompt) ); //set callback function
-  grid->attach(exitButton,1,8,2,1);
+  exitButton.set_valign(Gtk::Align::FILL);
+  Controls_grid->attach(exitButton,1,8,2,1);
+
+  Main_grid = Gtk::manage(new Gtk::Grid());
+
+  view_Frame.set_label("- View -");
+  Main_grid->attach(view_Frame,1,0,1,1);
+  view_Frame.set_expand(true);
 
 
-  
-  
-  
-  
-  controls_Frame.set_child(*grid);
-  m_VBox.append(controls_Frame);
-
-
+  controls_Frame.set_label("- Main Menu -");
+  Main_grid->attach(controls_Frame,0,0,1,1);
+  controls_Frame.set_child(*Controls_grid);
+  m_VBox.append(*Main_grid);
 }
 
 

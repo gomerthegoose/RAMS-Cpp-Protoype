@@ -20,7 +20,6 @@ MainMenu::MainMenu(): m_VBox(Gtk::Orientation::VERTICAL) // main mewnu construct
   m_VBox.append(m_HBox);
 
 
-<<<<<<< HEAD
   Gtk::Grid* grid = Gtk::manage(new Gtk::Grid());
 
   StaffButton.set_label("Staff");
@@ -50,18 +49,6 @@ MainMenu::MainMenu(): m_VBox(Gtk::Orientation::VERTICAL) // main mewnu construct
   
   controls_Frame.set_child(*grid);
   m_VBox.append(controls_Frame);
-=======
-  testbutton2.set_label("test2");
-  testbutton2.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::loginPrompt) ); //set callback function
-  testbutton2.get_style_context()->add_class("testButton2"); //apply css
-
-  controls_Box.get_style_context()->add_class("controlBox"); //apply css
-  controls_Box.append(testbutton);
-  controls_Box.append(testbutton2);
-
-
-  m_VBox.append(controls_Box);
->>>>>>> 8039a2770487db7545460db4a32ae64818065fa4
 
 
 }

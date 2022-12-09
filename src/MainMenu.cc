@@ -1,8 +1,11 @@
 #include "MainMenu.h"
 #include "LoginWindow.h"
+#include "StaffMenu.h"
 #include "FileLocations.h"
 #include "C:\msys64\mingw64\include\gtkmm-4.0\gtkmm.h"
 #include <iostream>
+
+StaffMenu staffMenu;
 
 MainMenu::MainMenu(): m_VBox(Gtk::Orientation::VERTICAL) // main mewnu constructor 
 {
@@ -63,5 +66,16 @@ MainMenu::~MainMenu(){
 
 void MainMenu::loginPrompt(){
   std::cout << "Top Tear Garbage" << std::endl;
-  controls_Frame.hide();
+  //controls_Frame.hide();
+  setMenu("awd");
+}
+
+void MainMenu::setMenu(std::string windowName){
+  Gtk::Frame staffFrame = staffMenu.CreateFrame();
+  controls_Frame.set_child(staffFrame);
+  Main_grid->attach(staffFrame,1,0,1,1);
+  staffFrame.set_expand(true);
+  view_Frame.hide();
+  
+
 }

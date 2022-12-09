@@ -6,6 +6,7 @@ public:
   MainMenu();
   virtual ~MainMenu();
   void CreateWindow();
+  void setMenu(std::string);
 
 protected:
   //Signal handlers:

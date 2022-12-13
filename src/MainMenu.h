@@ -6,11 +6,15 @@ public:
   MainMenu();
   virtual ~MainMenu();
   void CreateWindow();
-  void setMenu(std::string);
+  void setMenu(Gtk::Frame);
 
 protected:
   //Signal handlers:
-  void loginPrompt();
+  void staffMenuButton();
+  void stockMenuButton();
+  void thursdayBookingsButton();
+  void sundayBookingsButton();
+
   Gtk::Frame GetMainMenuControls();
   
 

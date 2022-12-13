@@ -5,7 +5,7 @@
 #include "C:\msys64\mingw64\include\gtkmm-4.0\gtkmm.h"
 #include <iostream>
 
-StaffMenu staffMenu;
+
 
 MainMenu::MainMenu(): m_VBox(Gtk::Orientation::VERTICAL) // main mewnu constructor 
 {
@@ -24,23 +24,23 @@ MainMenu::MainMenu(): m_VBox(Gtk::Orientation::VERTICAL) // main mewnu construct
   Controls_grid = Gtk::manage(new Gtk::Grid());
 
   StaffButton.set_label("Staff");
-  StaffButton.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::loginPrompt) ); //set callback function
+  StaffButton.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::staffMenuButton) ); //set callback function
   Controls_grid->attach(StaffButton, 1,1,2,1);
 
   StockButton.set_label("Stock");
-  StockButton.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::loginPrompt) ); //set callback function
+  StockButton.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::stockMenuButton) ); //set callback function
   Controls_grid->attach(StockButton,1,3,2,1);
 
   ThursdayBookingButton.set_label("Thursday Bookings");
-  ThursdayBookingButton.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::loginPrompt) ); //set callback function
+  ThursdayBookingButton.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::thursdayBookingsButton) ); //set callback function
   Controls_grid->attach(ThursdayBookingButton,1,5,2,1);
 
   SundayBookingButton.set_label("Sunday Bookings");
-  SundayBookingButton.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::loginPrompt) ); //set callback function
+  SundayBookingButton.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::sundayBookingsButton) ); //set callback function
   Controls_grid->attach(SundayBookingButton,1,7,2,1);
 
   exitButton.set_label("Exit");
-  exitButton.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::loginPrompt) ); //set callback function
+  exitButton.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::sundayBookingsButton) ); //set callback function
   exitButton.set_valign(Gtk::Align::FILL);
   Controls_grid->attach(exitButton,1,8,2,1);
 
@@ -58,24 +58,42 @@ MainMenu::MainMenu(): m_VBox(Gtk::Orientation::VERTICAL) // main mewnu construct
 }
 
 
-
+void MainMenu::setMenu(Gtk::Frame frame){
+  Main_grid->attach(frame,1,0,1,1); // atatch new frame to grid in correct location 
+  frame.set_expand(true); // allow new frame to expand
+  Main_grid->remove(*(Main_grid->get_child_at(1,0))); // remove existing widget from grid to avoid stacking frames
+}
 
 MainMenu::~MainMenu(){
 }
 
-
-void MainMenu::loginPrompt(){
-  std::cout << "Top Tear Garbage" << std::endl;
-  //controls_Frame.hide();
-  setMenu("awd");
+// button handlers
+void MainMenu::staffMenuButton(){
+  std::cout << "Staff" << std::endl;
+  view_Frame.hide(); // hide original frame
+  StaffMenu staffMenu; // create new staff menu instance
+  setMenu(staffMenu.CreateFrame()); // set active frame
 }
 
-void MainMenu::setMenu(std::string windowName){
-  Gtk::Frame staffFrame = staffMenu.CreateFrame();
-  controls_Frame.set_child(staffFrame);
-  Main_grid->attach(staffFrame,1,0,1,1);
-  staffFrame.set_expand(true);
-  view_Frame.hide();
-  
-
+void MainMenu::stockMenuButton(){
+  std::cout << "Stock" << std::endl;
+  view_Frame.hide(); // hide original frame
+  StaffMenu staffMenu; // create new staff menu instance
+  setMenu(staffMenu.CreateFrame()); // set active frame
 }
+
+void MainMenu::thursdayBookingsButton(){
+  std::cout << "Thursday Bookings" << std::endl;
+  view_Frame.hide(); // hide original frame
+  StaffMenu staffMenu; // create new staff menu instance
+  setMenu(staffMenu.CreateFrame()); // set active frame
+}
+
+void MainMenu::sundayBookingsButton(){
+  std::cout << "Sudnay Bookings" << std::endl;
+  view_Frame.hide(); // hide original frame
+  StaffMenu staffMenu; // create new staff menu instance
+  setMenu(staffMenu.CreateFrame()); // set active frame
+}
+
+

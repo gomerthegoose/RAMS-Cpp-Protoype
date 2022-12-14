@@ -15,6 +15,8 @@ protected:
   void thursdayBookingsButton();
   void sundayBookingsButton();
 
+  
+
   Gtk::Frame GetMainMenuControls();
   
 

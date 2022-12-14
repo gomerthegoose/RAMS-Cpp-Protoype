@@ -1,8 +1,10 @@
+#include "C:\msys64\mingw64\include\gtkmm-4.0\gtkmm.h"
 #include "MainMenu.h"
 #include "LoginWindow.h"
 #include "StaffMenu.h"
+#include "StockMenu.h"
 #include "FileLocations.h"
-#include "C:\msys64\mingw64\include\gtkmm-4.0\gtkmm.h"
+
 #include <iostream>
 
 
@@ -10,6 +12,7 @@
 MainMenu::MainMenu(): m_VBox(Gtk::Orientation::VERTICAL) // main mewnu constructor 
 {
   g_object_set(gtk_settings_get_default(),"gtk-application-prefer-dark-theme", TRUE,NULL); //set dark mode
+
 
 
 
@@ -78,8 +81,8 @@ void MainMenu::staffMenuButton(){
 void MainMenu::stockMenuButton(){
   std::cout << "Stock" << std::endl;
   view_Frame.hide(); // hide original frame
-  StaffMenu staffMenu; // create new staff menu instance
-  setMenu(staffMenu.CreateFrame()); // set active frame
+  StockMenu stockMenu; // create new staff menu instance
+  setMenu(stockMenu.CreateFrame()); // set active frame
 }
 
 void MainMenu::thursdayBookingsButton(){

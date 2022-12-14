@@ -5,8 +5,8 @@
 Gtk::Frame StaffMenu::CreateFrame(){
     Gtk::Frame staffFrame;
 
-    staffFrame.set_label("- Stock Menu -");
-    testbtn.set_label("Stock");
+    staffFrame.set_label("- Staff Menu -");
+    testbtn.set_label("Staff");
     testbtn.signal_clicked().connect( sigc::mem_fun(*this,&StaffMenu::testcall) ); //set callback function
     staffFrame.set_child(testbtn);
     return staffFrame;
